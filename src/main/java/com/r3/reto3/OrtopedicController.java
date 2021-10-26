@@ -16,7 +16,7 @@ public class OrtopedicController {
     OrtopedicService ortopedicService;
 
     @GetMapping("/all")
-    public List<Ortopedic> getOrtopedics() {
+    public List<Ortopedic> getOrtopedic() {
         return  ortopedicService.getAll();
     }
 
@@ -29,5 +29,17 @@ public class OrtopedicController {
     @ResponseStatus(HttpStatus.CREATED)
     public Ortopedic save(@RequestBody Ortopedic o) {
         return ortopedicService.save(o);
+    }
+
+    @PutMapping("/update")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Ortopedic update(@RequestBody Ortopedic o) {
+        return ortopedicService.update(o);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public boolean delete(@PathVariable("id") int Id) {
+        return ortopedicService.deleteOrtesis(Id);
     }
 }

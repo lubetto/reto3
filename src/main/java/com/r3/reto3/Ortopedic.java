@@ -4,40 +4,70 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
-
+/**
+ *
+ * @author LUIS GERMAN ORTEGA M.
+ */
 @Entity
 @Table(name = "ortopedic")
+/**
+ *
+ * Definicion clase Ortopedic
+ */
 public class Ortopedic implements Serializable {
-
+    /**
+     *
+     * Atributo ID de la Clase
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    /**
+     *
+     * Atributo name de la Clase
+     */
     @Column(length = 45)
     private String name;
-
+    /**
+     *
+     * Atributo brand de la Clase
+     */
     @Column(length = 45)
     private String brand;
-
+    /**
+     *
+     * Atributo year de la Clase
+     */
     @Column(length = 4)
     private Integer year;
-
+    /**
+     *
+     * Atributo description de la Clase
+     */
     @Column(length = 250)
     private String description;
-
+    /**
+     * Relacion con Category
+     */
     @ManyToOne
     @JoinColumn(name = "categoryID")
     @JsonIgnoreProperties("ortopedics")
     private Category category;
-
+    /**
+     * Relacion con Cliente
+     */
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "ortopedic")
     @JsonIgnoreProperties({"ortopedic","client"})
     public List<Message> messages;
-
+    /**
+     * Relacion con Reservaciones
+     */
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "ortopedic")
     @JsonIgnoreProperties("ortopedic")
     public List<Reservation> reservations;
-
+    /**
+     * Getters and Setters de la clase
+     */
     public Integer getId() {
         return id;
     }
