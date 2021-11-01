@@ -61,8 +61,8 @@ public class OrtopedicService {
         }
     }
 
-    public boolean deleteOrtesis(int ortesisId) {
-        Boolean aBoolean = getOrtopedic(ortesisId).map(ortesis -> {
+    public boolean deleteOrtesis(int idOrtopedic) {
+        Boolean aBoolean = getOrtopedic(idOrtopedic).map(ortesis -> {
             ortopedicRepository.delete(ortesis);
             return true;
         }).orElse(false);
