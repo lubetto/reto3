@@ -15,7 +15,9 @@ import java.util.Optional;
  * Definicion clase ReservationService
  */
 public class ReservationService {
-
+    /**
+     * creación de variable de tipo Repositorio con la anotación
+     */
     @Autowired
     private ReservationRepository resRepository;
     /**
@@ -27,26 +29,24 @@ public class ReservationService {
     }
     /**
      * metodo para obtener dato de la tabla reservaciones por Id
-     * @param id
-     * @return Optional de clase Reservacion
      */
-    public Optional<Reservation> getReservation(int id) {
-        return  resRepository.getReservation(id);
+    public Optional<Reservation> getReservation(int idReservation) {
+        return  resRepository.getReservation(idReservation);
     }
 
     /**
      *
      * Definición Clase Save
      */
-    public Reservation save(Reservation p){
-        if(p.getIdReservation() == null){
-            return resRepository.save(p);
+    public Reservation save(Reservation guardar){
+        if(guardar.getIdReservation() == null){
+            return resRepository.save(guardar);
         }else{
-            Optional<Reservation> reservationOptional = resRepository.getReservation(p.getIdReservation());
-            if(reservationOptional.isEmpty()){
-                return resRepository.save(p);
+            Optional<Reservation> resOptional = resRepository.getReservation(guardar.getIdReservation());
+            if(resOptional.isEmpty()){
+                return resRepository.save(guardar);
             }else{
-                return p;
+                return guardar;
             }
         }
     }
@@ -54,26 +54,26 @@ public class ReservationService {
      *
      * Definición Clase Update
      */
-    public Reservation update(Reservation r){
-        if(r.getIdReservation()!=null){
-            Optional<Reservation> e= resRepository.getReservation(r.getIdReservation());
-            if(!e.isEmpty()){
-                if(r.getStartDate()!=null){
-                    e.get().setStartDate(r.getStartDate());
+    public Reservation update(Reservation actual){
+        if(actual.getIdReservation()!=null){
+            Optional<Reservation> empt= resRepository.getReservation(actual.getIdReservation());
+            if(!empt.isEmpty()){
+                if(actual.getStartDate()!=null){
+                    empt.get().setStartDate(actual.getStartDate());
                 }
-                if(r.getDevolutionDate()!=null){
-                    e.get().setDevolutionDate(r.getDevolutionDate());
+                if(actual.getDevolutionDate()!=null){
+                    empt.get().setDevolutionDate(actual.getDevolutionDate());
                 }
-                if(r.getStatus()!=null){
-                    e.get().setStatus(r.getStatus());
+                if(actual.getStatus()!=null){
+                    empt.get().setStatus(actual.getStatus());
                 }
-                resRepository.save(e.get());
-                return e.get();
+                resRepository.save(empt.get());
+                return empt.get();
             }else{
-                return r;
+                return actual;
             }
         }else{
-            return r;
+            return actual;
         }
     }
     /**
