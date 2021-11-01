@@ -1,12 +1,17 @@
-package com.r3.reto3;
+package com.r3.reto3.web;
 
+import com.r3.reto3.modelos.Message;
+import com.r3.reto3.servicios.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
+/**
+ *
+ * @author LUIS GERMAN ORTEGA M.
+ */
 @RestController
 @RequestMapping("/api/Message")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
@@ -20,7 +25,7 @@ public class MessageController {
         return  messageService.getAll();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Optional<Message> getMessage(@PathVariable("id")int id) {
         return messageService.getMessage(id);
     }

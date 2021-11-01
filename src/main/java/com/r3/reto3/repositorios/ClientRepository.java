@@ -1,11 +1,16 @@
-package com.r3.reto3;
+package com.r3.reto3.repositorios;
 
+import com.r3.reto3.interfaces.ClientCrudRepository;
+import com.r3.reto3.modelos.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-
+/**
+ *
+ * @author LUIS GERMAN ORTEGA M.
+ */
 @Repository
 public class ClientRepository {
     @Autowired

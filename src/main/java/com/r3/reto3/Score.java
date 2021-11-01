@@ -1,6 +1,8 @@
 package com.r3.reto3;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.r3.reto3.modelos.Reservation;
+
 import javax.persistence.*;
 import java.io.Serializable;
 

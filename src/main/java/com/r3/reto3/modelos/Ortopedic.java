@@ -1,4 +1,4 @@
-package com.r3.reto3;
+package com.r3.reto3.modelos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
@@ -63,7 +63,7 @@ public class Ortopedic implements Serializable {
      * Relacion con Reservaciones
      */
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "ortopedic")
-    @JsonIgnoreProperties("ortopedic")
+    @JsonIgnoreProperties({"ortopedic", "message"})
     public List<Reservation> reservations;
     /**
      * Getters and Setters de la clase

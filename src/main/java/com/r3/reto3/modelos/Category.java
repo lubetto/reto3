@@ -1,11 +1,14 @@
-package com.r3.reto3;
+package com.r3.reto3.modelos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
-
+/**
+ *
+ * @author LUIS GERMAN ORTEGA M.
+ */
 @Entity
 @Table(name = "category")
 public class Category implements Serializable {

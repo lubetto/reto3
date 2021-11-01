@@ -1,8 +1,16 @@
-package com.r3.reto3;
+package com.r3.reto3.servicios;
 
+import com.r3.reto3.modelos.Reservation;
+import com.r3.reto3.reportes.ContadorClientes;
+import com.r3.reto3.reportes.StatusReservas;
+import com.r3.reto3.repositorios.ReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 /**
@@ -86,5 +94,32 @@ public class ReservationService {
             return true;
         }).orElse(false);
         return aBoolean;
+    }
+
+    public StatusReservas getReporteStatusReservations(){
+        List<Reservation>completed = resRepository.ResStatus("completed");
+        List<Reservation>cancelled = resRepository.ResStatus("cancelled");
+        return new StatusReservas(completed.size(), cancelled.size());
+    }
+
+    public List<Reservation> getReportesTiempoReservaciones(String datoA, String datoB){
+        SimpleDateFormat parser=new SimpleDateFormat ("yyyy-MM-dd");
+        Date datoUno = new Date();
+        Date datoDos = new Date();
+
+        try{
+            datoUno = parser.parse(datoA);
+            datoDos = parser.parse(datoB);
+        }catch(ParseException evt){
+            evt.printStackTrace();
+        }if(datoUno.before(datoDos)){
+            return resRepository.ResTime(datoUno, datoDos);
+        }else{
+            return new ArrayList<>();
+        }
+    }
+
+    public List<ContadorClientes> servicioTopClientes(){
+        return resRepository.getTopClients();
     }
 }

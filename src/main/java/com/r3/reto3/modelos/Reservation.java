@@ -1,10 +1,15 @@
-package com.r3.reto3;
+package com.r3.reto3.modelos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.r3.reto3.Score;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-
+/**
+ *
+ * @author LUIS GERMAN ORTEGA M.
+ */
 @Entity
 @Table(name = "reservation")
 public class Reservation implements Serializable {
@@ -21,18 +26,14 @@ public class Reservation implements Serializable {
     private String status="created";
 
     @ManyToOne
-    @JoinColumn(name = "ortopedicID")
+    @JoinColumn(name = "id")
     @JsonIgnoreProperties("reservations")
     private Ortopedic ortopedic;
 
     @ManyToOne
-    @JoinColumn(name = "clientID")
+    @JoinColumn(name = "idClient")
     @JsonIgnoreProperties({"reservations", "messages"})
     private Client client;
-
-    @OneToOne
-    @JsonIgnoreProperties("score")
-    private Score score;
 
     public Integer getIdReservation() {
         return idReservation;
@@ -82,11 +83,4 @@ public class Reservation implements Serializable {
         this.client = client;
     }
 
-    public Score getScore() {
-        return score;
-    }
-
-    public void setScore(Score score) {
-        this.score = score;
-    }
 }

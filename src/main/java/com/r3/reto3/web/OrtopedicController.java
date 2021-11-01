@@ -1,12 +1,17 @@
-package com.r3.reto3;
+package com.r3.reto3.web;
 
+import com.r3.reto3.modelos.Ortopedic;
+import com.r3.reto3.servicios.OrtopedicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
+/**
+ *
+ * @author LUIS GERMAN ORTEGA M.
+ */
 @RestController
 @RequestMapping("/api/Ortopedic")
 @CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST,RequestMethod.PUT,RequestMethod.DELETE})
@@ -20,7 +25,7 @@ public class OrtopedicController {
         return  ortopedicService.getAll();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Optional<Ortopedic> getOrtopedic(@PathVariable("id")int id) {
         return ortopedicService.getOrtopedic(id);
     }
@@ -39,7 +44,7 @@ public class OrtopedicController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public boolean delete(@PathVariable("id") int Id) {
-        return ortopedicService.deleteOrtesis(Id);
+    public boolean delete(@PathVariable("id") int id) {
+        return ortopedicService.deleteOrtesis(id);
     }
 }

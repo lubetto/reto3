@@ -1,11 +1,16 @@
-package com.r3.reto3;
+package com.r3.reto3.servicios;
 
+import com.r3.reto3.modelos.Client;
+import com.r3.reto3.repositorios.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+/**
+ *
+ * @author LUIS GERMAN ORTEGA M.
+ */
 @Service
 public class ClientService {
     @Autowired
