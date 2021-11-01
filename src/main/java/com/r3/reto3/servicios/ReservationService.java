@@ -95,13 +95,19 @@ public class ReservationService {
         }).orElse(false);
         return aBoolean;
     }
-
+    /**
+     *
+     * Definición Estado Reserevas
+     */
     public StatusReservas getReporteStatusReservations(){
         List<Reservation>completed = resRepository.ResStatus("completed");
         List<Reservation>cancelled = resRepository.ResStatus("cancelled");
         return new StatusReservas(completed.size(), cancelled.size());
     }
-
+    /**
+     *
+     * Definición Reporte fecha especifica
+     */
     public List<Reservation> getReportesTiempoReservaciones(String datoA, String datoB){
         SimpleDateFormat parser=new SimpleDateFormat ("yyyy-MM-dd");
         Date datoUno = new Date();
@@ -118,7 +124,10 @@ public class ReservationService {
             return new ArrayList<>();
         }
     }
-
+    /**
+     *
+     * Definición Servicio Top Clientes
+     */
     public List<ContadorClientes> servicioTopClientes(){
         return resRepository.getTopClients();
     }
