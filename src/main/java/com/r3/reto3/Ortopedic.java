@@ -21,7 +21,7 @@ public class Ortopedic implements Serializable {
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idOrtopedic;
+    private Integer id;
     /**
      *
      * Atributo name de la Clase
@@ -69,11 +69,11 @@ public class Ortopedic implements Serializable {
      * Getters and Setters de la clase
      */
     public Integer getId() {
-        return idOrtopedic;
+        return id;
     }
 
-    public void setId(Integer idOrtopedic) {
-        this.idOrtopedic = idOrtopedic;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
